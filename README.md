@@ -1,37 +1,98 @@
-Клонировать репозиторий и перейти в него в командной строке:
+# Foodgram
+Проект YaCut — это сервис укорачивания ссылок. Его назначение — ассоциировать длинную пользовательскую ссылку с короткой, которую предлагает сам пользователь или предоставляет сервис.
 
-```
-git clone 
-```
+## Используемые технологии:
+* Python
+* Flask
+* Sqlalchemy
+* Alembic
 
-```
-cd yacut
-```
+## Как запустить проект:
 
-Cоздать и активировать виртуальное окружение:
-
-```
-python3 -m venv venv
-```
-
-* Если у вас Linux/MacOS
+1. Клонировать репозиторий и перейти в него в командной строке:
 
     ```
-    source venv/bin/activate
+    git clone git@github.com:AndreyLeshchev/yacut_master_flask.git
+    ```
+    ```
+    cd yacut_master_flask
     ```
 
-* Если у вас windows
+2. Cоздать и активировать виртуальное окружение:
+    
+    ```
+    python3 -m venv env
+    ```
+    
+    * Если у вас Linux/macOS
+    
+        ```
+        source env/bin/activate
+        ```
+    
+    * Если у вас windows
+    
+        ```
+        source venv/Scripts/activate
+        ```
+    
+3. Обновить pip и установить зависимости из файла requirements.txt:
 
     ```
-    source venv/scripts/activate
+    python -m pip install --upgrade pip
+    ```
+    ```
+    pip install -r requirements.txt
+    ```
+    
+4. Выполнить миграции:
+
+    ```
+    flask db upgrade
     ```
 
-Установить зависимости из файла requirements.txt:
+    Запустить проект:
+    ```
+    flask run
+    ```
 
-```
-python3 -m pip install --upgrade pip
-```
+## Примеры API запросов и ответов:
 
-```
-pip install -r requirements.txt
-```
+* Для получения длинной ссылки по короткой ссылке:
+
+   
+    > GET https://127.0.0.1:5000/api/id/{short_id}/
+
+    Пример ответа:
+
+    ```
+    {
+        "url": "string"
+    }
+    ```
+
+
+* Для создания короткой ссылки:
+
+    > POST http://127.0.0.1:5000/api/id/
+
+
+    Пример запроса:
+
+    ```
+    {
+        "url": "string",
+        "custom_id": "string"
+    }
+    ```
+
+    Пример ответа:
+
+    ```
+    {
+        "url": "string",
+        "short_link": "string"
+    }
+    ```
+
+### Автор - [Андрей Лещев](https://github.com/AndreyLeshchev)

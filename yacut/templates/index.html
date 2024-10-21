@@ -47,14 +47,16 @@
             <p class="text-center">
               {% with messages = get_flashed_messages(with_categories=true) %}
                 {% if messages %}
-                  <h5 class="text-center">Ваша новая ссылка готова:</h5>
                   {% for category, message in messages %}
                     {% if category == 'positive_response'%}
+                      <h5 class="text-center">Ваша новая ссылка готова:
                       <a href="{{ message }}">
                         {{ message }}
                       </a>
+                      </h5>
                     {% else %}
                       {{ message }}
+                    {% endif %}
                   {% endfor %}
                 {% endif %}
               {% endwith %}

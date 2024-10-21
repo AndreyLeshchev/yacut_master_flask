@@ -9,10 +9,11 @@ from .models import URL_map
 def index_view():
     form = URL_mapForm()
     if form.validate_on_submit():
+        short = form.custom_id.data
         if not form.custom_id.data:
             short = URL_map.get_unique_short_id()
         if URL_map.query.filter_by(short=short).first():
-            flash(f'Ссылка {short} уже занята.', 'negative_response')
+            flash(f'Имя {short} уже занята!', 'negative_response')
             return render_template('index.html', form=form)
         url_map = URL_map(
             original=form.original_link.data,
@@ -22,7 +23,7 @@ def index_view():
         db.session.commit()
         flash(
             url_for(
-                'redirect_short', slug=short, _ext_external=True,
+                'redirect_short', slug=short, _external=True,
             ), 'positive_response',
         )
     return render_template('index.html', form=form)
