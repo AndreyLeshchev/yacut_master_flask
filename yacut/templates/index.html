@@ -48,14 +48,16 @@
               {% with messages = get_flashed_messages(with_categories=true) %}
                 {% if messages %}
                   {% for category, message in messages %}
-                    {% if category == 'positive_response'%}
+                    {% if category == 'ok_unique'%}
                       <h5 class="text-center">Ваша новая ссылка готова:
                       <a href="{{ message }}">
                         {{ message }}
                       </a>
                       </h5>
                     {% else %}
-                      {{ message }}
+                      <h5 class="text-center">
+                        {{ message }}
+                      </h5>
                     {% endif %}
                   {% endfor %}
                 {% endif %}
